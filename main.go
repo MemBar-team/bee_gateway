@@ -1,10 +1,10 @@
 package main
 
 import (
-	_ "github.com/beeapi/routers"
-
+	_ "github.com/bee_getway/routers"
 	"github.com/astaxie/beego"
 )
+
 
 func main() {
 	if beego.BConfig.RunMode == "dev" {

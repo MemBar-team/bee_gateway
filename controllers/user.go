@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/beeapi/models"
+	"github.com/bee_getway/models"
 	"encoding/json"
 
 	"github.com/astaxie/beego"
