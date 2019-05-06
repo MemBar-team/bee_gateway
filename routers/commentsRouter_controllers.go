@@ -7,7 +7,7 @@ import (
 
 func init() {
 
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:ObjectController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:ObjectController"],
+    beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"],
         beego.ControllerComments{
             Method: "Post",
             Router: `/`,
@@ -16,61 +16,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:ObjectController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:ObjectController"],
-        beego.ControllerComments{
-            Method: "GetAll",
-            Router: `/`,
-            AllowHTTPMethods: []string{"get"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:ObjectController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:ObjectController"],
-        beego.ControllerComments{
-            Method: "Get",
-            Router: `/:objectId`,
-            AllowHTTPMethods: []string{"get"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:ObjectController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:ObjectController"],
-        beego.ControllerComments{
-            Method: "Put",
-            Router: `/:objectId`,
-            AllowHTTPMethods: []string{"put"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:ObjectController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:ObjectController"],
-        beego.ControllerComments{
-            Method: "Delete",
-            Router: `/:objectId`,
-            AllowHTTPMethods: []string{"delete"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"],
-        beego.ControllerComments{
-            Method: "Post",
-            Router: `/`,
-            AllowHTTPMethods: []string{"post"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"],
-        beego.ControllerComments{
-            Method: "GetAll",
-            Router: `/`,
-            AllowHTTPMethods: []string{"get"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"],
+    beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"],
         beego.ControllerComments{
             Method: "Get",
             Router: `/:uid`,
@@ -79,25 +25,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"],
-        beego.ControllerComments{
-            Method: "Put",
-            Router: `/:uid`,
-            AllowHTTPMethods: []string{"put"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"],
-        beego.ControllerComments{
-            Method: "Delete",
-            Router: `/:uid`,
-            AllowHTTPMethods: []string{"delete"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"],
+    beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"],
         beego.ControllerComments{
             Method: "Login",
             Router: `/login`,
@@ -106,7 +34,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/beeapi/controllers:UserController"],
+    beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"],
         beego.ControllerComments{
             Method: "Logout",
             Router: `/logout`,

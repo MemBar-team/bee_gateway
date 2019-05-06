@@ -17,16 +17,16 @@ func init() {
 }
 
 type User struct {
-	UserID       string
-	UserType     uint8
-	UserEmail    string
-	UserPassword string
+	Id       string `orm:"pk;"`
+	UserType uint8
+	Email    string
+	Password string
 }
 
 func AddUser(u User) string {
-	u.UserID = "user_" + strconv.FormatInt(time.Now().UnixNano(), 10)
-	UserList[u.UserID] = &u
-	return u.UserID
+	u.Id = "user_" + strconv.FormatInt(time.Now().UnixNano(), 10)
+	UserList[u.Id] = &u
+	return u.Id
 }
 
 func GetUser(UserId string) (u *User, err error) {
@@ -56,7 +56,7 @@ func GetUser(UserId string) (u *User, err error) {
 
 func Login(userEmail, password string) bool {
 	for _, u := range UserList {
-		if u.UserEmail == userEmail && u.UserPassword == password {
+		if u.Email == userEmail && u.Password == password {
 			return true
 		}
 	}
