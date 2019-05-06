@@ -5,7 +5,6 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	"github.com/davecgh/go-spew/spew"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -16,11 +15,14 @@ func init() {
 		beego.AppConfig.String("dbhost"),
 		beego.AppConfig.String("dbname"),
 	)
-	spew.Dump(dblink)
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 	orm.RegisterDataBase("default", beego.AppConfig.String("dbdriver"), dblink)
-	//orm.RegisterDataBase("default", "postgres", "user=postgres password=test dbname=test1 host=127.0.0.1 port=5432")
+
 	orm.RegisterModel(
 		new(User))
 	orm.RunSyncdb("default", false, true)
+
+	UserList = make(map[string]*User)
+	u := User{"test", 1, "z03177279@gmail.com", "test"}
+	UserList["test"] = &u
 }

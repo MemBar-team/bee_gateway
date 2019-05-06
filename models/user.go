@@ -10,12 +10,6 @@ var (
 	UserList map[string]*User
 )
 
-func init() {
-	UserList = make(map[string]*User)
-	u := User{"test", 1, "z03177279@gmail.com", "test"}
-	UserList["test"] = &u
-}
-
 type User struct {
 	Id       string `orm:"pk;"`
 	UserType uint8
@@ -36,9 +30,9 @@ func GetUser(UserId string) (u *User, err error) {
 	return nil, errors.New("User not exists")
 }
 
-//func GetAllUsers() map[string]*User {
-//	return UserList
-//}
+func GetAllUsers() map[string]*User {
+	return UserList
+}
 
 //
 //func UpdateUser(uid string, uu *User) (a *User, err error) {

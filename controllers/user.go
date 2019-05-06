@@ -27,15 +27,15 @@ func (u *UserController) Post() {
 	u.ServeJSON()
 }
 
-// @Title GetAll
-// @Description get all Users
-// @Success 200 {object} models.User
-// @router / [get]
-//func (u *UserController) GetAll() {
-//	users := models.GetAllUsers()
-//	u.Data["json"] = users
-//	u.ServeJSON()
-//}
+//@Title GetAll
+//@Description get all Users
+//@Success 200 {object} models.User
+//@router / [get]
+func (u *UserController) GetAll() {
+	users := models.GetAllUsers()
+	u.Data["json"] = users
+	u.ServeJSON()
+}
 
 // @Title Get
 // @Description get user by uid
