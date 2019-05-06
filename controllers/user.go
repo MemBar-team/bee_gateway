@@ -3,9 +3,8 @@ package controllers
 import (
 	"encoding/json"
 
-	"github.com/bee_getway/models"
-
 	"github.com/astaxie/beego"
+	"github.com/bee_getway/models/user"
 )
 
 // Operations about Users
@@ -20,9 +19,10 @@ type UserController struct {
 // @Failure 403 body is empty
 // @router / [post]
 func (u *UserController) Post() {
-	var user models.User
-	json.Unmarshal(u.Ctx.Input.RequestBody, &user)
-	uid := models.AddUser(user)
+	var userData user.User
+
+	json.Unmarshal(u.Ctx.Input.RequestBody, &userData)
+	uid := user.AddUser(userData)
 	u.Data["json"] = map[string]string{"uid": uid}
 	u.ServeJSON()
 }
@@ -32,7 +32,7 @@ func (u *UserController) Post() {
 //@Success 200 {object} models.User
 //@router / [get]
 func (u *UserController) GetAll() {
-	users := models.GetAllUsers()
+	users := user.GetAllUsers()
 	u.Data["json"] = users
 	u.ServeJSON()
 }
