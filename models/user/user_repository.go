@@ -1,12 +1,10 @@
 package user
 
 import (
-	"errors"
-
 	"github.com/astaxie/beego/orm"
 )
 
-func AddUser(u User) (s string, err error) {
+func AddUser(u *User) (s string, err error) {
 	dbCon := orm.NewOrm()
 	if created, _, err := dbCon.ReadOrCreate(&u, "Email"); err == nil {
 		if created {
@@ -21,14 +19,13 @@ func AddUser(u User) (s string, err error) {
 func GetUser(UserId string) (u *User, err error) {
 	userInfo := User{Id: UserId}
 	dbCon := orm.NewOrm()
-	err := dbCon.Read(&userInfo)
+	err = dbCon.Read(&userInfo)
 
-	if err == orm.ErrNoRows {
+	if err == orm.ErrNoRows || err == orm.ErrMissPK {
 
 		return &User{}, err
 	}
-
-	return nil, errors.New("User not exists")
+	return &userInfo, nil
 }
 
 func GetAllUsers() map[string]*User {

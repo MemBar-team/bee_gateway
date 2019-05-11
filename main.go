@@ -6,6 +6,7 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/bee_getway/routers"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func init() {
