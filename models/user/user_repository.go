@@ -4,36 +4,40 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-func AddUser(u *User) (s string, err error) {
+type UserRepository struct {
+}
+
+func (this *UserRepository) AddUser(u *User) (s string, err error) {
 	dbCon := orm.NewOrm()
 	if created, _, err := dbCon.ReadOrCreate(&u, "Email"); err == nil {
 		if created {
-			return "ok", nil
+			return "created new user", nil
 		} else {
-			return "faild", nil
+			return "already actived", nil
 		}
+	} else {
+		return "create failed", err
 	}
-	return "err", err
 }
 
-func GetUser(UserId string) (u *User, err error) {
+func (this *UserRepository) GetUser(UserId string) (u User, err error) {
 	userInfo := User{Id: UserId}
 	dbCon := orm.NewOrm()
 	err = dbCon.Read(&userInfo)
 
 	if err == orm.ErrNoRows || err == orm.ErrMissPK {
 
-		return &User{}, err
+		return User{}, err
 	}
-	return &userInfo, nil
+	return userInfo, nil
 }
 
-func GetAllUsers() map[string]*User {
+func (this *UserRepository) GetAllUsers() map[string]*User {
 	return UserList
 }
 
 //
-//func UpdateUser(uid string, uu *User) (a *User, err error) {
+//func (this *UserRepository) UpdateUser(uid string, uu *User) (a *User, err error) {
 //	if u, ok := UserList[uid]; ok {
 //		if uu.Username != "" {
 //			u.Username = uu.Username
@@ -46,7 +50,7 @@ func GetAllUsers() map[string]*User {
 //	return nil, errors.New("User Not Exist")
 //}
 
-func Login(userEmail, password string) bool {
+func (this *UserRepository) Login(userEmail, password string) bool {
 	for _, u := range UserList {
 		if u.Email == userEmail && u.Password == password {
 			return true

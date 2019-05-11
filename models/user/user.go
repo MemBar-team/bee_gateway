@@ -1,6 +1,10 @@
 package user
 
-import "github.com/astaxie/beego/orm"
+import (
+	"time"
+
+	"github.com/astaxie/beego/orm"
+)
 
 var (
 	UserList map[string]*User
@@ -11,6 +15,8 @@ type User struct {
 	UserType uint8  `json:"user_type"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
+	Modified time.Time
+	Create   time.Time
 }
 
 func init() {
