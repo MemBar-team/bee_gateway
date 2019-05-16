@@ -16,6 +16,21 @@
     "basePath": "/v1",
     "paths": {
         "/user/": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "description": "get all Users",
+                "operationId": "UserController.GetAll",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "user"
@@ -39,39 +54,6 @@
                     },
                     "403": {
                         "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/user/login": {
-            "get": {
-                "tags": [
-                    "user"
-                ],
-                "description": "Logs user into the system",
-                "operationId": "UserController.Login",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "username",
-                        "description": "The username for login",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "password",
-                        "description": "The password for login",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} login success"
-                    },
-                    "403": {
-                        "description": "user not exist"
                     }
                 }
             }
@@ -123,22 +105,7 @@
     "definitions": {
         "models.User": {
             "title": "User",
-            "type": "object",
-            "properties": {
-                "UserEmail": {
-                    "type": "string"
-                },
-                "UserID": {
-                    "type": "string"
-                },
-                "UserPassword": {
-                    "type": "string"
-                },
-                "UserType": {
-                    "type": "integer",
-                    "format": "int32"
-                }
-            }
+            "type": "object"
         }
     },
     "tags": [
