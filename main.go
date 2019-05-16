@@ -16,11 +16,13 @@ func init() {
 		beego.AppConfig.String("dbhost"),
 		beego.AppConfig.String("dbname"),
 	)
-	orm.RegisterDriver("mysql", orm.DRMySQL)
+	err := orm.RegisterDriver("mysql", orm.DRMySQL)
+	if err != nil {
+		panic(err)
+	}
+
 	orm.RegisterDataBase("default", beego.AppConfig.String("dbdriver"), dblink)
-
 	orm.RunSyncdb("default", false, true)
-
 }
 
 func main() {
