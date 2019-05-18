@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/astaxie/beego"
 	"github.com/bee_getway/models/user"
@@ -10,6 +11,7 @@ import (
 // Operations about Users
 type UserController struct {
 	beego.Controller
+	user.UserRepository
 }
 
 // @Title CreateUser
@@ -19,10 +21,11 @@ type UserController struct {
 // @Failure 403 body is empty
 // @router / [post]
 func (u *UserController) Post() {
-	var userData user.User
-
+	var userData user.Users
+	fmt.Print(u.Ctx.Input.RequestBody)
 	json.Unmarshal(u.Ctx.Input.RequestBody, &userData)
-	uid, err := user.AddUser(&userData)
+	fmt.Print(userData)
+	uid, err := u.AddUser(&userData)
 	if err != nil {
 		u.Data[""] = "no data"
 		u.ServeJSONP()
@@ -37,7 +40,7 @@ func (u *UserController) Post() {
 //@Success 200 {object} models.User
 //@router / [get]
 func (u *UserController) GetAll() {
-	users := user.GetAllUsers()
+	users := u.GetAllUsers()
 	u.Data["json"] = users
 	u.ServeJSON()
 }
@@ -51,7 +54,7 @@ func (u *UserController) GetAll() {
 func (u *UserController) Get() {
 	uid := u.GetString(":uid")
 	if uid != "" {
-		user, err := user.GetUser(uid)
+		user, err := u.GetUser(uid)
 		if err != nil {
 			u.Data["json"] = err.Error()
 		} else {
@@ -103,16 +106,17 @@ func (u *UserController) Get() {
 // @Success 200 {string} login success
 // @Failure 403 user not exist
 // @router /login [get]
-func (u *UserController) Login() {
-	username := u.GetString("username")
-	password := u.GetString("password")
-	if user.Login(username, password) {
-		u.Data["json"] = "login success"
-	} else {
-		u.Data["json"] = "user not exist"
-	}
-	u.ServeJSON()
-}
+
+//func (u *UserController) Login() {
+//	username := u.GetString("username")
+//	password := u.GetString("password")
+//	if u.Login(username, password) {
+//		u.Data["json"] = "login success"
+//	} else {
+//		u.Data["json"] = "user not exist"
+//	}
+//	u.ServeJSON()
+//}
 
 // @Title logout
 // @Description Logs out current logged in user session

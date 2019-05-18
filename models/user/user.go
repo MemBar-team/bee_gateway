@@ -7,10 +7,10 @@ import (
 )
 
 var (
-	UserList map[string]*User
+	UserList map[string]*Users
 )
 
-type User struct {
+type Users struct {
 	Id       string `orm:"pk;" json:"id"`
 	UserType uint8  `json:"user_type"`
 	Email    string `json:"email"`
@@ -20,6 +20,6 @@ type User struct {
 }
 
 func init() {
-	orm.RegisterModel(
-		new(User))
+	orm.RegisterModel(new(Users))
+
 }

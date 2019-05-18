@@ -1,4 +1,4 @@
-#
-/.idea/
-beeapi
-/.vendor/
+.idea/
+vendor/
+bee_getway
+lastupdate.tmp
