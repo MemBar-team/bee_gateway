@@ -6,3 +6,6 @@ $bee run -gendoc=true -downdoc=true
 
 #doc URL
 http://localhost:8080/swagger
+
+#api 起動
+$bee run
