@@ -2,10 +2,10 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/astaxie/beego"
 	"github.com/bee_getway/models/user"
+	"github.com/davecgh/go-spew/spew"
 )
 
 // Operations about Users
@@ -22,16 +22,8 @@ type UserController struct {
 // @router / [post]
 func (u *UserController) Post() {
 	var userData user.Users
-	fmt.Print(u.Ctx.Input.RequestBody)
-	json.Unmarshal(u.Ctx.Input.RequestBody, &userData)
-	fmt.Print(userData)
-	uid, err := u.AddUser(&userData)
-	if err != nil {
-		u.Data[""] = "no data"
-		u.ServeJSONP()
-
-	}
-	u.Data["json"] = map[string]string{"uid": uid}
+	test := json.Unmarshal(u.Ctx.Input.RequestBody, &userData)
+	spew.Dump(test)
 	u.ServeJSON()
 }
 

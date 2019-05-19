@@ -1,9 +1,8 @@
 package user
 
 import (
-	"fmt"
-
 	"github.com/astaxie/beego/orm"
+	"github.com/davecgh/go-spew/spew"
 )
 
 type UserRepository struct {
@@ -12,14 +11,16 @@ type UserRepository struct {
 func (this *UserRepository) AddUser(u *Users) (s string, err error) {
 	dbCon := orm.NewOrm()
 	dbCon.Using("user")
-	fmt.Print(u)
+	spew.Dump(u)
 	if created, _, err := dbCon.ReadOrCreate(u, "Email"); err != nil {
+		spew.Dump("created", created)
 		if created {
 			dbCon.Commit()
-			return "created new user", nil
+			return "already actived", nil
 
 		} else {
-			return "already actived", nil
+			dbCon.Commit()
+			return "created new user", nil
 		}
 	} else {
 		return "create failed", err
