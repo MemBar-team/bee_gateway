@@ -3,9 +3,10 @@ package controllers
 import (
 	"encoding/json"
 
+	"github.com/davecgh/go-spew/spew"
+
 	"github.com/astaxie/beego"
 	"github.com/bee_getway/models/user"
-	"github.com/davecgh/go-spew/spew"
 )
 
 // Operations about Users
@@ -22,8 +23,16 @@ type UserController struct {
 // @router / [post]
 func (u *UserController) Post() {
 	var userData user.Users
-	test := json.Unmarshal(u.Ctx.Input.RequestBody, &userData)
-	spew.Dump(test)
+	err := json.Unmarshal(u.Ctx.Input.RequestBody, &userData)
+	if err != nil {
+		panic("jsont to obj is faild")
+	}
+	spew.Dump(userData)
+	strMsg, err := u.AddUser(&userData)
+	if err != nil {
+		panic("db insert user failed")
+	}
+	u.Data["json"] = strMsg
 	u.ServeJSON()
 }
 

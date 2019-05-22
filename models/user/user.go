@@ -11,9 +11,9 @@ var (
 )
 
 type Users struct {
-	Id       string `orm:"pk;" json:"id"`
+	Id       string `orm:"pk;unique;" json:"id"`
 	UserType uint8  `json:"user_type"`
-	Email    string `json:"email"`
+	Email    string `orm:"unique;" json:"email"`
 	Password string `json:"password"`
 	Modified time.Time
 	Create   time.Time

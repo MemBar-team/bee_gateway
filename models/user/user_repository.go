@@ -13,7 +13,6 @@ func (this *UserRepository) AddUser(u *Users) (s string, err error) {
 	dbCon.Using("user")
 	spew.Dump(u)
 	if created, _, err := dbCon.ReadOrCreate(u, "Email"); err != nil {
-		spew.Dump("created", created)
 		if created {
 			dbCon.Commit()
 			return "already actived", nil
