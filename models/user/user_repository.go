@@ -10,20 +10,14 @@ type UserRepository struct {
 
 func (this *UserRepository) AddUser(u *Users) (s string, err error) {
 	dbCon := orm.NewOrm()
-	dbCon.Using("user")
-	spew.Dump(u)
-	if created, _, err := dbCon.ReadOrCreate(u, "Email"); err != nil {
-		if created {
-			dbCon.Commit()
-			return "already actived", nil
-
-		} else {
-			dbCon.Commit()
-			return "created new user", nil
-		}
-	} else {
-		return "create failed", err
+	dbCon.Using("users")
+	id, err := dbCon.Insert(u)
+	if err != nil {
+		return "sql failed create user", err
 	}
+	dbCon.Commit()
+	spew.Dump(id)
+	return "created new user ", nil
 }
 
 func (this *UserRepository) GetUser(UserId string) (u Users, err error) {
