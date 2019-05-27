@@ -6,7 +6,7 @@ import (
 	"github.com/bee_getway/models"
 )
 
-type Users struct {
+type User struct {
 	Id       string `orm:"pk;unique;" json:"id"`
 	UserType uint8  `json:"user_type"`
 	Email    string `orm:"unique;" json:"email"`
@@ -18,7 +18,5 @@ type Users struct {
 func init() {
 	//orm.RegisterModel(new(Users))
 	db := models.GormConnect()
-	db.
-
-
+	db.AutoMigrate(&User{})
 }
