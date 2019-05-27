@@ -12,16 +12,6 @@ info:
 basePath: /v1
 paths:
   /user/:
-    get:
-      tags:
-      - user
-      description: get all Users
-      operationId: UserController.GetAll
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.User'
     post:
       tags:
       - user

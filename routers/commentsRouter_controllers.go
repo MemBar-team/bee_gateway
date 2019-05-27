@@ -18,15 +18,6 @@ func init() {
 
     beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"],
         beego.ControllerComments{
-            Method: "GetAll",
-            Router: `/`,
-            AllowHTTPMethods: []string{"get"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
-    beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"],
-        beego.ControllerComments{
             Method: "Get",
             Router: `/:uid`,
             AllowHTTPMethods: []string{"get"},

@@ -22,7 +22,7 @@ type UserController struct {
 // @Failure 403 body is empty
 // @router / [post]
 func (u *UserController) Post() {
-	var userData user.Users
+	var userData user.User
 	err := json.Unmarshal(u.Ctx.Input.RequestBody, &userData)
 	if err != nil {
 		panic("jsont to obj is faild")
@@ -40,11 +40,11 @@ func (u *UserController) Post() {
 //@Description get all Users
 //@Success 200 {object} models.User
 //@router / [get]
-func (u *UserController) GetAll() {
-	users := u.GetAllUsers()
-	u.Data["json"] = users
-	u.ServeJSON()
-}
+//func (u *UserController) GetAll() {
+//	users := u.GetAllUsers()
+//	u.Data["json"] = users
+//	u.ServeJSON()
+//}
 
 // @Title Get
 // @Description get user by uid
