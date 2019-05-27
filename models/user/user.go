@@ -2,12 +2,6 @@ package user
 
 import (
 	"time"
-
-	"github.com/astaxie/beego/orm"
-)
-
-var (
-	UserList map[string]*Users
 )
 
 type Users struct {
@@ -20,6 +14,7 @@ type Users struct {
 }
 
 func init() {
-	orm.RegisterModel(new(Users))
+	//orm.RegisterModel(new(Users))
+	db := gormConnect()
 
 }
