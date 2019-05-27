@@ -8,7 +8,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-func gormConnect() *gorm.DB {
+func GormConnect() *gorm.DB {
 	dblink := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8",
 		beego.AppConfig.String("dbuser"),
 		beego.AppConfig.String("dbpassword"),
@@ -20,5 +20,6 @@ func gormConnect() *gorm.DB {
 	if err != nil {
 		panic(err.Error())
 	}
+
 	return db
 }

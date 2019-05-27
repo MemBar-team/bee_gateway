@@ -2,6 +2,8 @@ package user
 
 import (
 	"time"
+
+	"github.com/bee_getway/models"
 )
 
 type Users struct {
@@ -15,6 +17,8 @@ type Users struct {
 
 func init() {
 	//orm.RegisterModel(new(Users))
-	db := gormConnect()
+	db := models.GormConnect()
+	db.
+
 
 }
