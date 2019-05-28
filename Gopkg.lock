@@ -45,6 +45,25 @@
   revision = "bd77b112433e999447bf4bc599e36214ba494a99"
 
 [[projects]]
+  digest = "1:1eac9e6cba6065ad43c20d37ef8679b2d85998aeae23efab53d2db6515a1ec81"
+  name = "github.com/jinzhu/gorm"
+  packages = [
+    ".",
+    "dialects/mysql",
+  ]
+  pruneopts = "UT"
+  revision = "b7156195f7f3415f97c20abbd6aff894b847fee8"
+  version = "v1.9.8"
+
+[[projects]]
+  branch = "master"
+  digest = "1:fd97437fbb6b7dce04132cf06775bd258cce305c44add58eb55ca86c6c325160"
+  name = "github.com/jinzhu/inflection"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "04140366298a54a039076d798123ffa108fff46c"
+
+[[projects]]
   digest = "1:4b63210654b1f2b664f74ec434a1bb1cb442b3d75742cc064a10808d1cca6361"
   name = "github.com/jtolds/gls"
   packages = ["."]
@@ -112,6 +131,8 @@
     "github.com/astaxie/beego/orm",
     "github.com/davecgh/go-spew/spew",
     "github.com/go-sql-driver/mysql",
+    "github.com/jinzhu/gorm",
+    "github.com/jinzhu/gorm/dialects/mysql",
     "github.com/smartystreets/goconvey/convey",
   ]
   solver-name = "gps-cdcl"
