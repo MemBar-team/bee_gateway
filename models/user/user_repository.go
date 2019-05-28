@@ -2,21 +2,20 @@ package user
 
 import (
 	"github.com/astaxie/beego/orm"
-	"github.com/davecgh/go-spew/spew"
+	"github.com/bee_getway/models"
+	"time"
 )
 
 type UserRepository struct {
 }
 
 func (this *UserRepository) AddUser(u *User) (s string, err error) {
-	dbCon := orm.NewOrm()
-	dbCon.Using("users")
-	id, err := dbCon.Insert(u)
-	if err != nil {
-		return "sql failed create user", err
-	}
-	dbCon.Commit()
-	spew.Dump(id)
+	//dbCon := orm.NewOrm()
+	db := models.GormConnect()
+	defer db.Close()
+	now := time.Now()
+	u.Create = &now
+	db.Create(&u)
 	return "created new user ", nil
 }
 

@@ -3,8 +3,6 @@ package controllers
 import (
 	"encoding/json"
 
-	"github.com/davecgh/go-spew/spew"
-
 	"github.com/astaxie/beego"
 	"github.com/bee_getway/models/user"
 )
@@ -27,7 +25,6 @@ func (u *UserController) Post() {
 	if err != nil {
 		panic("jsont to obj is faild")
 	}
-	spew.Dump(userData)
 	strMsg, err := u.AddUser(&userData)
 	if err != nil {
 		panic("db insert user failed")

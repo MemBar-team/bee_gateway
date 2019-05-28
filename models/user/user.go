@@ -13,8 +13,8 @@ type User struct {
 	UserType uint8  `json:"user_type"`
 	Email    string `gorm:"unique;" json:"email"`
 	Password string `json:"password"`
-	Modified time.Time
-	Create   time.Time
+	Modified *time.Time
+	Create   *time.Time
 }
 
 func init() {
