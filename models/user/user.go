@@ -17,6 +17,11 @@ type User struct {
 	Create   *time.Time
 }
 
+type LoingData struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
 func init() {
 	devmode, err := beego.AppConfig.Bool("devmode")
 	if err != nil {

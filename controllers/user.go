@@ -5,6 +5,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/bee_getway/models/user"
+	jwt "github.com/dgrijalva/jwt-go"
 )
 
 // Operations about Users
@@ -19,7 +20,7 @@ type UserController struct {
 // @Success 200 {int} models.User.Id
 // @Failure 403 body is empty
 // @router / [post]
-func (u *UserController) Post() {
+func (u *UserController) CreateUser() {
 	var userData user.User
 	err := json.Unmarshal(u.Ctx.Input.RequestBody, &userData)
 	if err != nil {
@@ -33,15 +34,29 @@ func (u *UserController) Post() {
 	u.ServeJSON()
 }
 
-//@Title GetAll
-//@Description get all Users
-//@Success 200 {object} models.User
-//@router / [get]
-//func (u *UserController) GetAll() {
-//	users := u.GetAllUsers()
-//	u.Data["json"] = users
-//	u.ServeJSON()
-//}
+// @Title Login
+// @Description Logs user into the system
+// @Param	username		query 	string	true		"The username for login"
+// @Param	password		query 	string	true		"The password for login"
+// @Success 200 {string} login success
+// @Failure 403 user not exist
+// @router /login [get]
+func (u *UserController) Login() {
+	var logindata user.LoingData
+	err := json.Unmarshal(u.Ctx.Input.RequestBody, &logindata)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	if u.SearchUser(logindata.Email, logindata.Password) {
+		u.Data["json"] = "login success"
+	} else {
+		u.Data["json"] = "user not exist"
+	}
+
+	//jwt.
+	//	u.ServeJSON()
+}
 
 // @Title Get
 // @Description get user by uid
@@ -94,25 +109,6 @@ func (u *UserController) Get() {
 //	uid := u.GetString(":uid")
 //	models.DeleteUser(uid)
 //	u.Data["json"] = "delete success!"
-//	u.ServeJSON()
-//}
-
-// @Title Login
-// @Description Logs user into the system
-// @Param	username		query 	string	true		"The username for login"
-// @Param	password		query 	string	true		"The password for login"
-// @Success 200 {string} login success
-// @Failure 403 user not exist
-// @router /login [get]
-
-//func (u *UserController) Login() {
-//	username := u.GetString("username")
-//	password := u.GetString("password")
-//	if u.Login(username, password) {
-//		u.Data["json"] = "login success"
-//	} else {
-//		u.Data["json"] = "user not exist"
-//	}
 //	u.ServeJSON()
 //}
 

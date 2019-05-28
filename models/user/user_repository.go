@@ -19,6 +19,17 @@ func (this *UserRepository) AddUser(u *User) (s string, err error) {
 	return "created new user ", nil
 }
 
+func (this *UserRepository) SearchUser(userEmail string, password string) (User, bool) {
+	db := models.GormConnect()
+	defer db.Close()
+	users := []User{}
+	db.Find(&users, "email=? and password=?", userEmail, password)
+
+	// usersリスト処理
+
+	return LoginUser, true
+}
+
 func (this *UserRepository) GetUser(UserId string) (u User, err error) {
 	userInfo := User{Id: UserId}
 	dbCon := orm.NewOrm()
@@ -47,15 +58,6 @@ func (this *UserRepository) GetUser(UserId string) (u User, err error) {
 //		return u, nil
 //	}
 //	return nil, errors.New("User Not Exist")
-//}
-
-//func (this *UserRepository) Login(userEmail string, password string) bool {
-//	for _, u := range UserList {
-//		if u.Email == userEmail && u.Password == password {
-//			return true
-//		}
-//	}
-//	return false
 //}
 
 //func DeleteUser(uid string) {

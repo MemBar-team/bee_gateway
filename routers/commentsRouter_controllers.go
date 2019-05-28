@@ -9,7 +9,7 @@ func init() {
 
     beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"],
         beego.ControllerComments{
-            Method: "Post",
+            Method: "CreateUser",
             Router: `/`,
             AllowHTTPMethods: []string{"post"},
             MethodParams: param.Make(),
