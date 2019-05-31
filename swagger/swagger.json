@@ -44,7 +44,7 @@
             }
         },
         "/user/login": {
-            "get": {
+            "post": {
                 "tags": [
                     "user"
                 ],

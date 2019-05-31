@@ -19,14 +19,17 @@ func (this *UserRepository) AddUser(u *User) (s string, err error) {
 	return "created new user ", nil
 }
 
-func (this *UserRepository) SearchUser(userEmail string, password string) ( bool) {
+func (this *UserRepository) SearchUser(userEmail string, password string) ( User, bool) {
 	db := models.GormConnect()
 	defer db.Close()
 	users := []User{}
 	db.Find(&users, "email=? and password=?", userEmail, password)
-
+	totalUsers := len(users)
+	if totalUsers != 1{
+		return User{}, false
+	}
 	// usersリスト処理
-	return true
+	return users[0],true
 }
 
 func (this *UserRepository) GetUser(UserId string) (u User, err error) {

@@ -2,10 +2,10 @@ package controllers
 
 import (
 	"encoding/json"
+	"github.com/davecgh/go-spew/spew"
 
 	"github.com/astaxie/beego"
 	"github.com/bee_getway/models/user"
-	//jwt "github.com/dgrijalva/jwt-go"
 )
 
 // Operations about Users
@@ -40,20 +40,21 @@ func (u *UserController) CreateUser() {
 // @Param	password		query 	string	true		"The password for login"
 // @Success 200 {string} login success
 // @Failure 403 user not exist
-// @router /login [get]
+// @router /login [post]
 func (u *UserController) Login() {
-	var logindata user.LoingData
+	var logindata user.LoginData
 	err := json.Unmarshal(u.Ctx.Input.RequestBody, &logindata)
 	if err != nil {
 		panic(err.Error())
 	}
-
-	if u.SearchUser(logindata.Email, logindata.Password) {
+	spew.Dump(logindata)
+	userData, ok := u.SearchUser(logindata.Email, logindata.Password)
+	if ok {
 		u.Data["json"] = "login success"
 	} else {
 		u.Data["json"] = "user not exist"
 	}
-
+	spew.Dump(userData)
 	//jwt.
 	//	u.ServeJSON()
 }
