@@ -5,7 +5,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/bee_getway/models/user"
-	jwt "github.com/dgrijalva/jwt-go"
+	//jwt "github.com/dgrijalva/jwt-go"
 )
 
 // Operations about Users

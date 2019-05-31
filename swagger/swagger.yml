@@ -48,6 +48,28 @@ paths:
             $ref: '#/definitions/models.User'
         "403":
           description: :uid is empty
+  /user/login:
+    get:
+      tags:
+      - user
+      description: Logs user into the system
+      operationId: UserController.Login
+      parameters:
+      - in: query
+        name: username
+        description: The username for login
+        required: true
+        type: string
+      - in: query
+        name: password
+        description: The password for login
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} login success'
+        "403":
+          description: user not exist
   /user/logout:
     get:
       tags:
