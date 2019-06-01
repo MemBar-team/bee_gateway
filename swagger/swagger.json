@@ -89,35 +89,6 @@
                     }
                 }
             }
-        },
-        "/user/{uid}": {
-            "get": {
-                "tags": [
-                    "user"
-                ],
-                "description": "get user by uid",
-                "operationId": "UserController.Get",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "uid",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.User"
-                        }
-                    },
-                    "403": {
-                        "description": ":uid is empty"
-                    }
-                }
-            }
         }
     },
     "definitions": {

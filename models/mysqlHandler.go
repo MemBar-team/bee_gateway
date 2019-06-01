@@ -2,8 +2,6 @@ package models
 
 import (
 	"fmt"
-	"github.com/davecgh/go-spew/spew"
-
 	"github.com/astaxie/beego"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -17,7 +15,6 @@ func GormConnect() *gorm.DB {
 		beego.AppConfig.String("dbname"),
 	)
 	dbms := beego.AppConfig.String("dbdriver")
-	spew.Dump(dblink)
 	db, err := gorm.Open(dbms, dblink)
 	if err != nil {
 		panic(err.Error())

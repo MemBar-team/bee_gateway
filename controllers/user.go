@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/davecgh/go-spew/spew"
+	"time"
 
 	"github.com/astaxie/beego"
 	"github.com/bee_getway/models/user"
@@ -14,6 +15,20 @@ type UserController struct {
 	user.UserRepository
 }
 
+type User struct {
+	Id       string `gorm:"pk;unique;" json:"id"`
+	UserType uint8  `json:"user_type"`
+	Email    string `gorm:"unique;" json:"email"`
+	Password string `json:"password"`
+	Modified *time.Time
+	Created  *time.Time
+}
+
+type LoginData struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
 // @Title CreateUser
 // @Description create users
 // @Param	body		body 	models.User	true		"body for user content"
@@ -21,7 +36,7 @@ type UserController struct {
 // @Failure 403 body is empty
 // @router / [post]
 func (u *UserController) CreateUser() {
-	var userData user.User
+	var userData User
 	err := json.Unmarshal(u.Ctx.Input.RequestBody, &userData)
 	if err != nil {
 		panic("jsont to obj is faild")
@@ -42,13 +57,13 @@ func (u *UserController) CreateUser() {
 // @Failure 403 user not exist
 // @router /login [post]
 func (u *UserController) Login() {
-	var logindata user.LoginData
+	var logindata LoginData
 	err := json.Unmarshal(u.Ctx.Input.RequestBody, &logindata)
 	if err != nil {
 		panic(err.Error())
 	}
 	spew.Dump(logindata)
-	userData, ok := u.SearchUser(logindata.Email, logindata.Password)
+	userData, ok := u.UserLogin(logindata.Email, logindata.Password)
 	if ok {
 		u.Data["json"] = "login success"
 	} else {
@@ -65,18 +80,18 @@ func (u *UserController) Login() {
 // @Success 200 {object} models.User
 // @Failure 403 :uid is empty
 // @router /:uid [get]
-func (u *UserController) Get() {
-	uid := u.GetString(":uid")
-	if uid != "" {
-		user, err := u.GetUser(uid)
-		if err != nil {
-			u.Data["json"] = err.Error()
-		} else {
-			u.Data["json"] = user
-		}
-	}
-	u.ServeJSON()
-}
+//func (u *UserController) Get() {
+//	uid := u.GetString(":uid")
+//	if uid != "" {
+//		user, err := u.GetUser(uid)
+//		if err != nil {
+//			u.Data["json"] = err.Error()
+//		} else {
+//			u.Data["json"] = user
+//		}
+//	}
+//	u.ServeJSON()
+//}
 
 // @Title Update
 // @Description update the user

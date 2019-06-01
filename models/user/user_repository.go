@@ -2,34 +2,38 @@ package user
 
 import (
 	"github.com/astaxie/beego/orm"
+	"github.com/bee_getway/controllers"
 	"github.com/bee_getway/models"
+	"github.com/davecgh/go-spew/spew"
 	"time"
 )
 
 type UserRepository struct {
 }
 
-func (this *UserRepository) AddUser(u *User) (s string, err error) {
+func (this *UserRepository) AddUser(u *controllers.User) (s string, err error) {
 	//dbCon := orm.NewOrm()
 	db := models.GormConnect()
 	defer db.Close()
 	now := time.Now()
-	u.Create = &now
+	u.Created = &now
 	db.Create(&u)
 	return "created new user ", nil
 }
 
-func (this *UserRepository) SearchUser(userEmail string, password string) ( User, bool) {
+func (this *UserRepository) UserLogin(userEmail string, password string) (User, bool) {
 	db := models.GormConnect()
 	defer db.Close()
 	users := []User{}
 	db.Find(&users, "email=? and password=?", userEmail, password)
 	totalUsers := len(users)
-	if totalUsers != 1{
+	if totalUsers != 1 {
 		return User{}, false
 	}
 	// usersリスト処理
-	return users[0],true
+
+	spew.Dump(users[0])
+	return users[0], true
 }
 
 func (this *UserRepository) GetUser(UserId string) (u User, err error) {
