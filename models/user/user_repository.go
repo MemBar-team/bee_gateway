@@ -2,7 +2,6 @@ package user
 
 import (
 	"github.com/astaxie/beego/orm"
-	"github.com/bee_getway/controllers"
 	"github.com/bee_getway/models"
 	"github.com/davecgh/go-spew/spew"
 	"time"
@@ -11,7 +10,7 @@ import (
 type UserRepository struct {
 }
 
-func (this *UserRepository) AddUser(u *controllers.User) (s string, err error) {
+func (this *UserRepository) AddUser(u *User) (s string, err error) {
 	//dbCon := orm.NewOrm()
 	db := models.GormConnect()
 	defer db.Close()
