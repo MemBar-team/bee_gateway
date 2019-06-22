@@ -7,7 +7,7 @@ import (
 
 func init() {
 
-    beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"],
+    beego.GlobalControllerRouter["github.com/bee_gateway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_gateway/controllers:UserController"],
         beego.ControllerComments{
             Method: "CreateUser",
             Router: `/`,
@@ -16,7 +16,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"],
+    beego.GlobalControllerRouter["github.com/bee_gateway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_gateway/controllers:UserController"],
         beego.ControllerComments{
             Method: "Login",
             Router: `/login`,
@@ -25,7 +25,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_getway/controllers:UserController"],
+    beego.GlobalControllerRouter["github.com/bee_gateway/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bee_gateway/controllers:UserController"],
         beego.ControllerComments{
             Method: "Logout",
             Router: `/logout`,

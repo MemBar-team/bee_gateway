@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"github.com/bee_gateway/common"
 	"github.com/davecgh/go-spew/spew"
 
 	"github.com/astaxie/beego"
@@ -48,6 +49,8 @@ func (u *UserController) Login() {
 		panic(err.Error())
 	}
 	spew.Dump(logindata)
+	uuid := common.CreateUUID()
+	spew.Dump(uuid)
 	userData, ok := u.UserLogin(logindata.Email, logindata.Password)
 	if ok {
 		u.Data["json"] = &userData

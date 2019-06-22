@@ -2,6 +2,7 @@ package user
 
 import (
 	"github.com/astaxie/beego/orm"
+	"github.com/bee_gateway/common"
 	"github.com/bee_gateway/models"
 	"github.com/davecgh/go-spew/spew"
 	"time"
@@ -11,11 +12,11 @@ type UserRepository struct {
 }
 
 func (this *UserRepository) AddUser(u *User) (s string, err error) {
-	//dbCon := orm.NewOrm()
 	db := models.GormConnect()
 	defer db.Close()
 	now := time.Now()
 	u.Created = &now
+	u.Id = common.CreateUUID()
 	db.Create(&u)
 	return "created new user ", nil
 }

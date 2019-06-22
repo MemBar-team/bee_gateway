@@ -1,17 +1,18 @@
 package common
 
 import (
-	"github.com/bee_gateway/vendor/github.com/astaxie/beego"
 	"github.com/davecgh/go-spew/spew"
-	"github.com/google/uuid"
+	"github.com/satori/go.uuid"
 )
 
-func CreateUUID() string {
-	u,err := uuid.NewRandom()
-	if err != nil {
-		beego.BeeLogger.Error("error")
-	}
-	spew.Dump(u)
+type NewUUID struct {
+	UUID uuid.UUID
+}
 
-	return uu
+func CreateUUID() string {
+	newOne := NewUUID{}
+	newOne.UUID = uuid.NewV4()
+	u4 := newOne.UUID.String()
+	spew.Dump(u4)
+	return u4
 }
