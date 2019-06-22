@@ -5,7 +5,7 @@ import (
 	"github.com/davecgh/go-spew/spew"
 
 	"github.com/astaxie/beego"
-	"github.com/bee_getway/models/user"
+	"github.com/bee_gateway/models/user"
 )
 
 // Operations about Users

@@ -5,7 +5,7 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	"time"
 
-	"github.com/bee_getway/models"
+	"github.com/bee_gateway/models"
 )
 
 type User struct {

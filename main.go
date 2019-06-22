@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	_ "github.com/bee_getway/routers"
+	_ "github.com/bee_gateway/routers"
 	_ "github.com/go-sql-driver/mysql"
 )
 

@@ -2,7 +2,7 @@ package user
 
 import (
 	"github.com/astaxie/beego/orm"
-	"github.com/bee_getway/models"
+	"github.com/bee_gateway/models"
 	"github.com/davecgh/go-spew/spew"
 	"time"
 )
