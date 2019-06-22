@@ -50,13 +50,13 @@ func (u *UserController) Login() {
 	spew.Dump(logindata)
 	userData, ok := u.UserLogin(logindata.Email, logindata.Password)
 	if ok {
-		u.Data["json"] = "login success"
+		u.Data["json"] = &userData
 	} else {
 		u.Data["json"] = "user not exist"
 	}
 	spew.Dump(userData)
 	//jwt.
-	//	u.ServeJSON()
+	u.ServeJSON()
 }
 
 // @Title Get
