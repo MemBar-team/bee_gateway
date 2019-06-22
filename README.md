@@ -1,4 +1,4 @@
-# bee_getway
+# bee_gateway
 beegoで爆速構築〜ぶんぶんぶんぶん
 
 #apiドキュメント自動生成&起動
