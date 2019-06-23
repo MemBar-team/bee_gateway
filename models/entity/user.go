@@ -1,10 +1,9 @@
-package user
+package entity
 
 import (
 	"github.com/astaxie/beego"
 	"github.com/davecgh/go-spew/spew"
 	"time"
-
 	"github.com/bee_gateway/models"
 )
 

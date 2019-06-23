@@ -2,18 +2,19 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/bee_gateway/common"
-	"github.com/davecgh/go-spew/spew"
-
 	"github.com/astaxie/beego"
-	"github.com/bee_gateway/models/user"
+	"github.com/bee_gateway/models/entity"
+	"github.com/bee_gateway/models/repository"
+	"github.com/bee_gateway/utils"
+	"github.com/davecgh/go-spew/spew"
 )
 
 // Operations about Users
 type UserController struct {
 	beego.Controller
-	user.UserRepository
+	userRepository.UserRepository
 }
+
 
 // @Title CreateUser
 // @Description create users
@@ -22,7 +23,7 @@ type UserController struct {
 // @Failure 403 body is empty
 // @router / [post]
 func (u *UserController) CreateUser() {
-	var userData user.User
+	var userData entity.User
 	err := json.Unmarshal(u.Ctx.Input.RequestBody, &userData)
 	if err != nil {
 		panic("jsont to obj is faild")
@@ -43,22 +44,22 @@ func (u *UserController) CreateUser() {
 // @Failure 403 user not exist
 // @router /login [post]
 func (u *UserController) Login() {
-	var logindata user.LoginData
+	var logindata entity.LoginData
 	err := json.Unmarshal(u.Ctx.Input.RequestBody, &logindata)
 	if err != nil {
 		panic(err.Error())
 	}
 	spew.Dump(logindata)
-	uuid := common.CreateUUID()
+	uuid := utils.CreateUUID()
 	spew.Dump(uuid)
 	userData, ok := u.UserLogin(logindata.Email, logindata.Password)
+	token := utils.CreateJWT(userData)
 	if ok {
-		u.Data["json"] = &userData
+		u.Data["json"] = token
 	} else {
 		u.Data["json"] = "user not exist"
 	}
 	spew.Dump(userData)
-	//jwt.
 	u.ServeJSON()
 }
 

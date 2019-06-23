@@ -1,34 +1,35 @@
-package user
+package userRepository
 
 import (
 	"github.com/astaxie/beego/orm"
-	"github.com/bee_gateway/common"
 	"github.com/bee_gateway/models"
+	"github.com/bee_gateway/utils"
 	"github.com/davecgh/go-spew/spew"
+	"github.com/bee_gateway/models/entity"
 	"time"
 )
 
 type UserRepository struct {
 }
 
-func (this *UserRepository) AddUser(u *User) (s string, err error) {
+func (this *UserRepository) AddUser(u *entity.User) (s string, err error) {
 	db := models.GormConnect()
 	defer db.Close()
 	now := time.Now()
 	u.Created = &now
-	u.Id = common.CreateUUID()
+	u.Id = utils.CreateUUID()
 	db.Create(&u)
 	return "created new user ", nil
 }
 
-func (this *UserRepository) UserLogin(userEmail string, password string) (User, bool) {
+func (this *UserRepository) UserLogin(userEmail string, password string) (entity.User, bool) {
 	db := models.GormConnect()
 	defer db.Close()
-	users := []User{}
+	users := []entity.User{}
 	db.Find(&users, "email=? and password=?", userEmail, password)
 	totalUsers := len(users)
 	if totalUsers != 1 {
-		return User{}, false
+		return entity.User{}, false
 	}
 	// usersリスト処理
 
@@ -36,14 +37,14 @@ func (this *UserRepository) UserLogin(userEmail string, password string) (User, 
 	return users[0], true
 }
 
-func (this *UserRepository) GetUser(UserId string) (u User, err error) {
-	userInfo := User{Id: UserId}
+func (this *UserRepository) GetUser(UserId string) (u entity.User, err error) {
+	userInfo := entity.User{Id: UserId}
 	dbCon := orm.NewOrm()
 	err = dbCon.Read(&userInfo)
 
 	if err == orm.ErrNoRows || err == orm.ErrMissPK {
 
-		return User{}, err
+		return entity.User{}, err
 	}
 	return userInfo, nil
 }
