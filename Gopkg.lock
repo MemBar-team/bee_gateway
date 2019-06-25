@@ -2,6 +2,30 @@
 
 
 [[projects]]
+  branch = "master"
+  digest = "1:6d6d9309d10d5dffaaf3a56c4b2570dec62152f978ac3566b13bdfafd63f32fb"
+  name = "github.com/aead/chacha20"
+  packages = ["chacha"]
+  pruneopts = "UT"
+  revision = "8b13a72661dae6e9e5dea04f344f0dc95ea29547"
+
+[[projects]]
+  branch = "master"
+  digest = "1:13c056cb8b3db5741aaaf8b91f7cbd0f2ff0d44b2448744852896c92dd0bad84"
+  name = "github.com/aead/chacha20poly1305"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "233f39982aeb502bfca81558666747bec91cf00c"
+
+[[projects]]
+  branch = "master"
+  digest = "1:82df2686fe2e0cc2894fbec00098fe2efeacbda08af8087a86d9eeea58699d49"
+  name = "github.com/aead/poly1305"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "3fee0db0b63511234f7230da50b72414f6258f10"
+
+[[projects]]
   digest = "1:4e30b3c89af143a2a549afff5ef30e49d5d3bb2b6ab9d0bd133d375a7fe8d5d2"
   name = "github.com/astaxie/beego"
   packages = [
@@ -80,6 +104,22 @@
   version = "v4.20"
 
 [[projects]]
+  digest = "1:96d3964a8c60b920baa923d40942b1209ceef85a3268f12b0d7782350fdf94af"
+  name = "github.com/o1egl/paseto"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "12402efa2af194ab29e0a509a11aa834b4ab0397"
+  version = "v1.0.0"
+
+[[projects]]
+  digest = "1:cf31692c14422fa27c83a05292eb5cbe0fb2775972e8f1f8446a71549bd8980b"
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "ba968bfe8b2f7e042a574c888954fccecfa385b4"
+  version = "v0.8.1"
+
+[[projects]]
   digest = "1:274f67cb6fed9588ea2521ecdac05a6d62a8c51c074c1fccc6a49a40ba80e925"
   name = "github.com/satori/go.uuid"
   packages = ["."]
@@ -113,14 +153,26 @@
   version = "1.6.3"
 
 [[projects]]
-  digest = "1:a2057c5b6feb8feb081ce9987f0e4d0713c6b3a6d3824900e35750f349223a25"
+  digest = "1:6a94841f01257e2fad7e324aec25fcb9596b2aae0a427d80b9afb5c3324dd73a"
   name = "golang.org/x/crypto"
   packages = [
     "acme",
     "acme/autocert",
+    "blake2b",
+    "ed25519",
+    "ed25519/internal/edwards25519",
+    "hkdf",
   ]
   pruneopts = "UT"
   revision = "c126467f60eb25f8f27e5a981f32a87e3965053f"
+
+[[projects]]
+  branch = "master"
+  digest = "1:9289797869517c73400e7b5a93beefbfc86e06f56e3ab03f38fb0d575e685277"
+  name = "golang.org/x/sys"
+  packages = ["cpu"]
+  pruneopts = "UT"
+  revision = "c5567b49c5d04a5f83870795b8c0e2df43a8ce32"
 
 [[projects]]
   digest = "1:c25289f43ac4a68d88b02245742347c94f1e108c534dda442188015ff80669b3"
@@ -150,6 +202,7 @@
     "github.com/go-sql-driver/mysql",
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/mysql",
+    "github.com/o1egl/paseto",
     "github.com/satori/go.uuid",
     "github.com/smartystreets/goconvey/convey",
   ]
