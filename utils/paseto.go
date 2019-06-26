@@ -72,3 +72,13 @@ func CreateToken(user entity.User) (string,error){
 
 	return token, nil
 }
+
+func VerifyToken(token string)(Auth,error){
+	var newJsonToken paseto.JSONToken
+	var newFooter string
+
+	err := paseto.V2.Verify(token,PublicKKEY,&newJsonToken,&newFooter,)
+	if err !=nil {
+		return Auth{},errors.New(ErrExpired)
+	}
+}
